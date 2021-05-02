@@ -125,8 +125,10 @@ export default function Ajouter() {
         </div>
 
         <style jsx>{`
-        .second-part{
-            margin-top:50px;
+        @media (max-width: 992px){
+            .second-part{
+                margin-top:50px;
+            }
         }
         `}</style>
     </Layout>
