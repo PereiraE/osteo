@@ -1,15 +1,21 @@
 const { Patient } = require('../sequelize');
 
 const findAllPatients = (req, res, next) => {
-    Patient.findAll().then(patients => res.json(patients));
+    Patient.findAll()
+        .then(patients => res.status(200).json(patients))
+        .catch(error => res.status(400).json({ error }));
 }
 
 const findOnePatient = (req, res, next) => {
-    Patient.findByPk(req.params.id).then(patient => res.json(patient));
+    Patient.findByPk(req.params.id)
+        .then(patient => res.status(200).json(patient))
+        .catch(error => res.status(400).json({ error }));
 }
 
 const createPatient = (req, res, next) => {
-    Patient.create(req.body).then(patient => res.json(patient));
+    Patient.create(req.body)
+        .then(patient => res.status(201).json(patient))
+        .catch(error => res.status(400).json({ error }));
 }
 
 const deletePatient = (req, res, next) => {
@@ -17,7 +23,9 @@ const deletePatient = (req, res, next) => {
         where: {
             id: req.params.id
         }
-    }).then(res.json({message : "Patient supprimé avec succès"}));
+    })
+    .then(res.status(200).json({message : "Patient supprimé avec succès"}))
+    .catch(error => res.status(400).json({ error }));
 }
 
 module.exports = {
