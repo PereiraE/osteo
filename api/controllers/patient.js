@@ -28,9 +28,20 @@ const deletePatient = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 }
 
+const updatePatient = (req, res, next) => {
+    Patient.update(req.body, {
+        where : {
+            id: req.params.id
+        }
+    })
+    .then((patients => res.status(200).json(patients[0])))
+    .catch(error => res.status(400).json({ error }));
+}
+
 module.exports = {
     findAllPatients,
     findOnePatient,
     createPatient,
     deletePatient,
+    updatePatient,
 }
