@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 
+
 const Patient = () => {
   const router = useRouter()
   const { id } = router.query
@@ -8,3 +9,4 @@ const Patient = () => {
 }
 
 export default Patient
+

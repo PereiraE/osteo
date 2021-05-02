@@ -1,27 +1,37 @@
-import Head from 'next/head'
+import Layout from '../../components/Layout'
 import Link from 'next/link'
 
-export default function Liste() {
+function Liste({patients}) {
   return (
-    <div className="container">
-      <Head>
-        <title>Ostéo</title>
-      </Head>
-
-      <main>
-        <h1>Lister des patients</h1>
-        <Link href="/patient/ajouter">
-            <a>Ajouter un patient</a>
-          </Link>
-      </main>
-
-      <footer>
-
-      </footer>
-
+  <Layout>
+      <h3>Liste</h3>
+      <Link href="./ajouter"><a className="btn btn-primary">Ajouter un patient</a></Link>
+      <ul className="list-group">
+      {patients.map((patient) => (
+        <li className="list-group-item d-flex justify-content-between align-items-center">
+          {patient.firstName} {patient.lastName}
+        </li>
+      ))}
+      </ul>
       <style jsx>{`
-
+        .list-group{
+          margin-top:20px;
+        }
       `}</style>
-    </div>
+  </Layout>
   )
 }
+
+export async function getStaticProps() {
+
+  const res = await fetch('http://osteo.estebanpereira.fr/api/patients')
+  const patients = await res.json()
+
+  return {
+    props: {
+      patients,
+    },
+  }
+}
+
+export default Liste
