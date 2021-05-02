@@ -21,14 +21,16 @@ app.use(express.urlencoded({
 }));
 
 
-/*
+
 sequelize.sequelize.sync({ force: true })
   .then(() => {
-    console.log(`Database & tables created!`)
-  }); */
+    patientsFixtures.load();
+    console.log(`Database & tables & data created!`)
+  });
 
-  patientsFixtures.load();
 
+
+console.log(process.env);
 
 app.use('/api/patients', patientRoutes);
 

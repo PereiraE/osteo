@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const ConsultationModel = require('./models/consultation');
 const PatientModel = require('./models/patient');
 
 const sequelize = new Sequelize('osteo', 'osteo', 'osteo', {
@@ -11,13 +12,11 @@ const sequelize = new Sequelize('osteo', 'osteo', 'osteo', {
   });
 
 const Patient = PatientModel(sequelize, Sequelize);
+const Consultation = ConsultationModel(sequelize, Sequelize);
 
-/*List.hasMany(Task, {
-    foreignKey: 'listID',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
-}); */
-
+Patient.hasMany(Consultation, {
+    foreignKey: 'patientID'
+});
 
 module.exports = {
     Patient,
