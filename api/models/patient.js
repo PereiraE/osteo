@@ -25,7 +25,7 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
             allowNull: false,
         },
-        telephone: {
+        phone: {
             type: type.STRING,
             allowNull: false,
         },
@@ -42,5 +42,4 @@ module.exports = (sequelize, type) => {
             allowNull: false,
         }
     })
-
 }
