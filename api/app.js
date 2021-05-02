@@ -16,10 +16,11 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-sequelize.sync({ force: true })
+/*
+sequelize.sequelize.sync({ force: true })
   .then(() => {
     console.log(`Database & tables created!`)
-  });
+  }); */
 
 
 app.use((req, res) => {
