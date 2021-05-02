@@ -9,7 +9,7 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
             allowNull: false
         },
-        fonctionnalSign: {
+        functionalSign: {
             type: type.STRING,
             allowNull: false
         },
