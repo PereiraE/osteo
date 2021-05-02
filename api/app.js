@@ -3,6 +3,8 @@ const sequelize = require('./sequelize');
 
 const patientRoutes = require('./routes/patient');
 
+const patientsFixtures = require('./fixtures/PatientsFixtures');
+
 const app = express();
 app.disable("x-powered-by");
 
@@ -18,11 +20,14 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
 /*
 sequelize.sequelize.sync({ force: true })
   .then(() => {
     console.log(`Database & tables created!`)
   }); */
+
+  patientsFixtures.load();
 
 
 app.use('/api/patients', patientRoutes);
