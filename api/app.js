@@ -1,6 +1,10 @@
 const express = require('express');
 const sequelize = require('./sequelize');
 
+const patientRoutes = require('./routes/patient');
+
+const patientsFixtures = require('./fixtures/PatientsFixtures');
+
 const app = express();
 app.disable("x-powered-by");
 
@@ -16,12 +20,19 @@ app.use(express.urlencoded({
   extended: true
 }));
 
-/*
+
+
 sequelize.sequelize.sync({ force: true })
   .then(() => {
-    console.log(`Database & tables created!`)
-  }); */
+    patientsFixtures.load();
+    console.log(`Database & tables & data created!`)
+  });
 
+
+
+console.log(process.env);
+
+app.use('/api/patients', patientRoutes);
 
 app.use((req, res) => {
     res.json({ message: 'Votre requête a bien été reçue !' });
