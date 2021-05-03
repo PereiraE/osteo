@@ -43,7 +43,7 @@ const findByName = (req, res, next) => {
     Patient.findAll({
         where: {
             lastName: {
-                [Op.like]: `%${req.params.name}%`
+                [Op.like]: `%${req.params.lastName}%`
             }
         }
     })
