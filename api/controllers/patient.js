@@ -47,7 +47,7 @@ const findByName = (req, res, next) => {
             }
         }
     })
-    .then((patients => res.json(patients)))
+    .then((patients => res.status(200).json(patients)))
     .catch(error => res.status(400).json({ error }));
 }
 
