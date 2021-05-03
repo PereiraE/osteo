@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/', patientController.createPatient);
 router.get('/:id', patientController.findOnePatient);
+router.get('/lastName/:name', patientController.findByName);
 router.put('/:id', patientController.updatePatient);
 router.delete('//:id', patientController.deletePatient);
 router.use('/', patientController.findAllPatients);
