@@ -1,7 +1,6 @@
 <template>
   <div v-if="currentPatient">
     <h4>Patient</h4>
-    <!-- v-model="currentPatient.id" -->
       <div class="row">
           <div class="col-lg-6">
             <form>
