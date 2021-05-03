@@ -1,4 +1,5 @@
 const { Patient } = require('../sequelize');
+const { Op } = require("sequelize");
 
 const findAllPatients = (req, res, next) => {
     Patient.findAll()
@@ -38,10 +39,23 @@ const updatePatient = (req, res, next) => {
     .catch(error => res.status(400).json({ error }));
 }
 
+const findByName = (req, res, next) => {
+    Patient.findAll({
+        where: {
+            lastName: {
+                [Op.like]: `%${req.params.lastName}%`
+            }
+        }
+    })
+    .then((patients => res.status(200).json(patients)))
+    .catch(error => res.status(400).json({ error }));
+}
+
 module.exports = {
     findAllPatients,
     findOnePatient,
     createPatient,
     deletePatient,
     updatePatient,
+    findByName,
 }
