@@ -9,10 +9,6 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
             allowNull: false
         },
-        functionalSign: {
-            type: type.STRING,
-            allowNull: false
-        },
         orthoTest: {
             type: type.STRING,
         },
@@ -20,5 +16,5 @@ module.exports = (sequelize, type) => {
             type: type.STRING,
             allowNull: false
         }
-    })
+    });
 }
