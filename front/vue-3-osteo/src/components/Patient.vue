@@ -2,7 +2,7 @@
   <div v-if="currentPatient">
     <h4>Patient</h4>
       <div class="row">
-          <div class="col-lg-6">
+          <div class="col-lg-12">
             <form>
               <div class="mb-3">
                   <label for="patientId" class="form-label">Numéro patient</label>
@@ -74,7 +74,7 @@
               </div>
             </form>
           </div>
-          <div class="col-lg-6 second-part">
+          <!-- <div class="col-lg-6 second-part">
               <div>
                   Historique des consultations :
               </div>
@@ -116,7 +116,7 @@
                       </div>
                   </div>
               </div>
-          </div>
+          </div> -->
       </div>
     <br>
     <button type="button" class="btn btn-primary" @click="updatePatient">Modifier</button>
