@@ -30,7 +30,7 @@ sequelize.sequelize.sync({ force: true })
 
 
 
-console.log(process.env);
+//console.log(process.env);
 
 app.use('/api/patients', patientRoutes);
 

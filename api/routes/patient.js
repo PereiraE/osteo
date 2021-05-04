@@ -8,7 +8,7 @@ router.post('/', patientController.createPatient);
 router.get('/:id', patientController.findOnePatient);
 router.get('/lastName/:lastName', patientController.findByName);
 router.put('/:id', patientController.updatePatient);
-router.delete('//:id', patientController.deletePatient);
-router.use('/', patientController.findAllPatients);
+router.delete('/:id', patientController.deletePatient);
+router.get('/', patientController.findAllPatients);
 
 module.exports = router;

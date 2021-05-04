@@ -20,7 +20,7 @@ const createPatient = (req, res, next) => {
 }
 
 const deletePatient = (req, res, next) => {
-    Patient.delete({
+    Patient.destroy({
         where: {
             id: req.params.id
         }
