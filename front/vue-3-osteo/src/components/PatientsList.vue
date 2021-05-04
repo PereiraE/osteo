@@ -25,7 +25,7 @@
       <br>
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(patient, index) in patients" :key="index">
-          {{ patient.firstName }} {{ patient.lastName }} <router-link :to="'/patients/update/' + patient.id">Edit</router-link>
+          <router-link :to="'/patients/' + patient.id">{{ patient.firstName }} {{ patient.lastName }}</router-link> <router-link :to="'/patients/update/' + patient.id">Edit</router-link>
         </li>
       </ul>
     </div>
