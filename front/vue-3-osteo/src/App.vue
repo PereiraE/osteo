@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg">
           <div class="container-fluid">
-              <router-link to="/" class="navbar-brand">PatientBook</router-link>
+              <router-link to="/" class="navbar-brand">PB</router-link>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
               </button>
@@ -12,27 +12,30 @@
                           <router-link to="/patients" class="nav-link">Patients</router-link>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">Consultation</a>
+                          <router-link to="/consultations" class="nav-link">Consultations</router-link>
                       </li>
                       <li class="nav-item">
                           <a class="nav-link" href="#">Facturation</a>
                       </li>
                   </ul>
               </div>
+            <!-- <form class="d-flex nav-search">
+                <input class="form-control me-2" type="search" placeholder="Recherche" aria-label="Search">
+            </form> -->
         </div>
     </nav>  
   
-    <div class="container mt-3">
+    <div class="container-fluid">
       <router-view />
     </div>
-    <div class="container">
+    <div class="container-fluid footer">
       <div class="col"></div>
       <div class="col">
-        <footer style="margin-top:50px;border-top:1px solid lightgray;padding-top:20px;">
+        <footer>
             <div class="row" style="margin-right:0px;margin-left:0px;">
                 <div class="col-12 col-md">
                     <!-- <img class="mb-2" src="#" alt="Osteo" width="24" height="24"> -->
-                    <span>PatientBook</span>
+                    <span>PB</span>
                     <small class="d-block mb-3 text-muted">© 2021</small>
                 </div>
                 <div class="col-6 col-md">
@@ -78,13 +81,61 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700&display=swap');
+
+*{
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    outline: none;
+}
+
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: inset 0 -1px 0 transparent;
+}
+
 .footer{
-  background: red;
+ border-top: 1px solid rgb(229,231,235);
+ padding: 50px 0;
 }
 .footer .row{
     margin-right: 0;
     margin-left: 0;
+}
+.navbar{
+    background: #43369C;
+    .navbar-brand{
+        font-weight: 400;
+        color: #8DA2FB;
+    }
+    a{
+        color: rgba(255,255,255,0.8);    
+    }
+    .nav-search{
+        input{
+            background: #5452B5;
+            min-width: 300px;
+            border: none;
+            height: 30px;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.8);
+            &::placeholder{
+                color: rgba(255,255,255,0.8);
+            }
+        }
+    }
 }
 </style>
 

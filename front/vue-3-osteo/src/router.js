@@ -21,6 +21,12 @@ const routes =  [
     path: "/patients/add",
     name: "add-patient",
     component: () => import("./components/AddPatient")
+  },
+  {
+    path: "/consultations",
+    alias: "/consultations",
+    name: "consultations",
+    component: () => import("./components/Consultations")
   }
 ];
 
