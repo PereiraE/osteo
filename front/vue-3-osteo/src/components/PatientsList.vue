@@ -3,7 +3,7 @@
     <div class="list row">
       <div class="col">
         <div class="input-group">
-          <router-link to="/add"><button class="btn btn-outline-primary" type="button">Ajouter un patient</button></router-link>
+          <router-link to="/patients/add"><button class="btn btn-outline-primary" type="button">Ajouter un patient</button></router-link>
         </div>
       </div>
       <div class="col">
@@ -25,7 +25,7 @@
       <br>
       <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(patient, index) in patients" :key="index">
-          {{ patient.firstName }} {{ patient.lastName }} <router-link :to="'/patients/' + patient.id">Edit</router-link>
+          {{ patient.firstName }} {{ patient.lastName }} <router-link :to="'/patients/update/' + patient.id">Edit</router-link>
         </li>
       </ul>
     </div>

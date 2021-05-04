@@ -8,12 +8,12 @@ const routes =  [
     component: () => import("./components/PatientsList")
   },
   {
-    path: "/patients/:id",
+    path: "/patients/update/:id",
     name: "patient-details",
-    component: () => import("./components/Patient")
+    component: () => import("./components/UpdatePatient")
   },
   {
-    path: "/add",
+    path: "/patients/add",
     name: "add",
     component: () => import("./components/AddPatient")
   }
