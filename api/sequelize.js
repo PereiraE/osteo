@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const ConsultationModel = require('./models/consultation');
 const PatientModel = require('./models/patient');
 const CategoryModel = require('./models/category');
+const AntecedentModel = require('./models/antecedent');
 
 const sequelize = new Sequelize('osteo', 'osteo', 'osteo', {
     host: 'estebanpereira.fr',
@@ -14,19 +15,24 @@ const sequelize = new Sequelize('osteo', 'osteo', 'osteo', {
 
 const Patient = PatientModel(sequelize, Sequelize);
 const Consultation = ConsultationModel(sequelize, Sequelize);
-const AntecedentCatagory = CategoryModel(sequelize, Sequelize, 'AntecedentCategory');
+const Antecedent = AntecedentModel(sequelize, Sequelize);
+const AntecedentCategory = CategoryModel(sequelize, Sequelize, 'AntecedentCategory');
 
 Patient.hasMany(Consultation, {
     foreignKey: 'patientID'
 });
 
-Patient.hasMany(AntecedentCatagory, {
+Patient.hasMany(Antecedent, {
     foreignKey: 'patientID'
-})
+});
+
+Antecedent.belongsTo(AntecedentCategory, {
+    foreignKey: 'antecedentCategoryID'
+});
 
 module.exports = {
     Patient,
     Consultation,
-    AntecedentCatagory,
+    AntecedentCategory,
     sequelize,
 }
