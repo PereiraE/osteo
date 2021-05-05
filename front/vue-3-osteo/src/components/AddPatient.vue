@@ -1,10 +1,6 @@
 <template>
   <div class="col-lg-12">
     <form v-if="!submitted">
-      <div class="mb-3">
-          <label for="patientId" class="form-label">Numéro patient</label>
-          <input type="text" class="form-control" id="patientId" v-model="patient.id" aria-label="Disabled input example" disabled readonly/>
-      </div>
       <div class="row">
           <div class="col">
               <div class="mb-3">
@@ -22,14 +18,14 @@
       <div class="row">
           <div class="col">
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                  <label class="form-check-label" for="flexRadioDefault1">
+                  <input class="form-check-input" type="radio" name="male" id="male" v-model="patient.gender" v-bind:value="false">
+                  <label class="form-check-label" for="male">
                       Masculin
                   </label>
               </div>
               <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                  <label class="form-check-label" for="flexRadioDefault2">
+                  <input class="form-check-input" type="radio" name="female" id="female" v-model="patient.gender" v-bind:value="true">
+                  <label class="form-check-label" for="female">
                       Féminin
                   </label>
               </div>
@@ -90,6 +86,7 @@ export default {
         id: null,
         lastName: "",
         firstName: "",
+        gender:"",
         birthDate: "",
         adress: "",
         phone: "",
@@ -105,6 +102,7 @@ export default {
       var data = {
         lastName: this.patient.lastName,
         firstName: this.patient.firstName,
+        gender: this.patient.gender,
         birthDate: this.patient.birthDate,
         adress: this.patient.adress,
         phone: this.patient.phone,
