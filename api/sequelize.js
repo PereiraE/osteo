@@ -3,6 +3,7 @@ const ConsultationModel = require('./models/consultation');
 const PatientModel = require('./models/patient');
 const CategoryModel = require('./models/category');
 const AntecedentModel = require('./models/antecedent');
+const FunctionalSignModel = require('./models/functionalSign');
 
 const sequelize = new Sequelize('osteo', 'osteo', 'osteo', {
     host: 'estebanpereira.fr',
@@ -17,6 +18,7 @@ const Patient = PatientModel(sequelize, Sequelize);
 const Consultation = ConsultationModel(sequelize, Sequelize);
 const Antecedent = AntecedentModel(sequelize, Sequelize);
 const AntecedentCategory = CategoryModel(sequelize, Sequelize, 'AntecedentCategory');
+const FunctionalSign = FunctionalSignModel(sequelize, Sequelize);
 
 Patient.hasMany(Consultation, {
     foreignKey: 'patientID'
@@ -30,9 +32,14 @@ Antecedent.belongsTo(AntecedentCategory, {
     foreignKey: 'antecedentCategoryID'
 });
 
+Consultation.hasMany(FunctionalSign, {
+    foreignKey: 'consultationID'
+});
+
 module.exports = {
     Patient,
     Consultation,
     AntecedentCategory,
+    FunctionalSign,
     sequelize,
 }
