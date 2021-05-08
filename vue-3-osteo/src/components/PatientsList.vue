@@ -14,7 +14,7 @@
       <div class="patient-list-content">
         <div class="patient-card" v-for="(patient, index) in patients" :key="index">
           <div class="patient-card-content">
-            <span class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</span><br>
+            <router-link :to="'/patients/' + patient.id"><span class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</span><br></router-link>
             <span class="patient-last-consultation">Dernière consultation : 10/10/2021</span>
           </div>
           <div class="patient-num">
