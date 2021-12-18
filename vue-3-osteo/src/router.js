@@ -27,6 +27,11 @@ const routes =  [
     alias: "/consultations",
     name: "consultations",
     component: () => import("./components/Consultations")
+  },
+  {
+    path: "/login",
+    name: "auth",
+    component: () => import("./components/Auth")
   }
 ];
 

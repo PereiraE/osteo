@@ -1,64 +1,30 @@
 <template>
   <div class="row">
-    <div class="sidebar col-lg-2">
-      <div class="sidebar-content">
-       <router-link to="/patients/add"><button class="pbbtn pbbtn-primary">Nouveau patient</button></router-link>
-        <button class="pbbtn pbbtn-secondary">Mode édition</button>
-      </div>
-    </div>
-    <div class="patient-list-container col-lg-7">
+    <router-link to="/patients/add"><button type="button" class="btn btn-primary">Nouveau patient</button></router-link>
+    <br>
+    <br>
+    <div class="patient-list-container col-lg">
       <div class="patient-list-header">
         <span class="patient-list-title">Patients</span>
         <input type="search" class="form-control" placeholder="Rechercher un patient" v-model="patientLastName" v-on:keyup.enter="onEnter" >
       </div> 
       <div class="patient-list-content">
-        <div class="patient-card" v-for="(patient, index) in patients" :key="index">
-          <div class="patient-card-content">
-            <router-link :to="'/patients/' + patient.id"><span class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</span><br></router-link>
-            <span class="patient-last-consultation">Dernière consultation : 10/10/2021</span>
+        <br>
+        <ol class="list-group list-group-numbered">
+          <div class="patient-card" v-for="(patient, index) in patients" :key="index">
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold"><router-link :to="'/patients/' + patient.id"><span class="patient-name">{{ patient.firstName }} {{ patient.lastName }}</span></router-link></div>
+                Dernière consultation : JJ/MM/AAAA
+              </div>
+              <span class="badge bg-primary rounded-pill"><router-link :to="'/patients/update/' + patient.id">Éditer</router-link></span>
+            </li>            
+            <hr>
           </div>
-          <div class="patient-num">
-            <b>N°:</b> {{ patient.id }}
-          </div>
-        </div>
+        </ol>
       </div>  
     </div>
-    <div class="rightbar col-lg-3">
-      <div class="rightbar-content">
-        <span>Prochains rendez-vous</span>
-      </div>
-    </div>
   </div>
-  <!-- <hr>
-  <div class="list row">
-    <div class="col">
-      <div class="input-group">
-        <router-link to="/patients/add"><button class="btn btn-outline-primary" type="button">Ajouter un patient</button></router-link>
-      </div>
-    </div>
-    <div class="col">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Rechercher un patient"
-          v-model="patientLastName">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button"
-            @click="searchPatient"
-          >
-            🔍 Rechercher 
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="list row">
-    <h4>Liste des patients</h4>
-    <br>
-    <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(patient, index) in patients" :key="index">
-        <router-link :to="'/patients/' + patient.id">{{ patient.firstName }} {{ patient.lastName }}</router-link> <router-link :to="'/patients/update/' + patient.id">Edit</router-link>
-      </li>
-    </ul>
-  </div> -->
 </template>
 
 <script>
@@ -118,97 +84,121 @@ export default {
 </script>
 
 <style lang="scss">
-.pbbtn{
-  font-size: 0.9rem;
-  font-weight: 400;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 0;
-  display: block;
+a{
+  text-decoration: none;
 }
-.sidebar, .patient-list-container{
-  min-height: 100vh;
+.rounded-pill a{
+  color: #fff;
 }
-.sidebar{
-  .sidebar-content{
-    margin: 30px 0;
-    .pbbtn-primary{
-      background: #5950EA;
-      color: #fff;
-      width: 80%;
-      margin: 0 auto 12px auto;
-    }
-    .pbbtn-secondary{
-      background: #fff;
-      color: #6F7884;
-      width: 80%;
-      border: 1px solid #C3C8CE;
-      margin: auto;
-    }
+// .pbbtn{
+//   font-size: 0.9rem;
+//   font-weight: 400;
+//   border: none;
+//   border-radius: 5px;
+//   padding: 5px 0;
+//   display: block;
+// }
+// .sidebar, .patient-list-container{
+//   min-height: 100vh;
+// }
+// .sidebar{
+//   .sidebar-content{
+//     margin: 30px 0;
+//     .pbbtn-primary{
+//       background: #5950EA;
+//       color: #fff;
+//       width: 80%;
+//       margin: 0 auto 12px auto;
+//       border: 1px solid #5950EA;
+//     }
+//     .pbbtn-secondary{
+//       background: #fff;
+//       color: #6F7884;
+//       width: 80%;
+//       border: 1px solid #C3C8CE;
+//       margin: auto;
+//     }
+//   }
+// }
+.patient-profile-container{
+  display: flex;
+  width: 80%;
+  margin: 0 auto 20px auto;
+  img{
+    border-radius: 100%;
+    width: 40px;
+    float: left;
+  }
+  .profile-name{
+    width: calc(100% - 50px);
+    float: right;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-left: 10px;
   }
 }
-.patient-list-container{
-  padding: 0;
-  border-right: 1px solid rgb(229,231,235);
-  border-left: 1px solid rgb(229,231,235);
-  .patient-list-header{
-    padding-left: 30px;
-    height: 80px;
-    border-bottom: 1px solid rgb(229,231,235);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .patient-list-title{
-      float: left;
-      font-size: 1.2rem;
-      font-weight: 400;
-    }
-    input{
-      margin-right: 30px;
-      max-width: 350px;
-      border: 1px solid #C3C8CE;
-      font-weight: 300;
-      height: 30px;
-      &::placeholder{
-        color: #6F7884;
-      }
-    }
-  }
-}
-.patient-list-content{
-  .patient-card{
-    width: 100%;
-    padding:0 30px;
-    height: 80px;
-    border-bottom: 1px solid rgb(229,231,235);
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .patient-card-content{
-      .patient-name{
-        font-weight: 400;
-      }
-      .patient-last-consultation{
-        font-weight: 400;
-        color: #6F7884;
-      }
-    }
-  }
-  .patient-num{
-    b{
-      font-weight: 400;
-    }
-  }
-}
-.rightbar{
-  background: #F9FAFB;
-  .rightbar-content{
-    text-align: center;
-    margin: 30px 0;
-    span{
-      font-weight: 400;
-    }
-  }
-}
+// .patient-list-container{
+//   padding: 0;
+//   border-right: 1px solid rgb(229,231,235);
+//   border-left: 1px solid rgb(229,231,235);
+//   .patient-list-header{
+//     padding-left: 30px;
+//     height: 80px;
+//     border-bottom: 1px solid rgb(229,231,235);
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     .patient-list-title{
+//       float: left;
+//       font-size: 1.2rem;
+//       font-weight: 400;
+//     }
+//     input{
+//       margin-right: 30px;
+//       max-width: 350px;
+//       border: 1px solid #C3C8CE;
+//       font-weight: 300;
+//       height: 30px;
+//       &::placeholder{
+//         color: #6F7884;
+//       }
+//     }
+//   }
+// }
+// .patient-list-content{
+//   .patient-card{
+//     width: 100%;
+//     padding:0 30px;
+//     height: 80px;
+//     border-bottom: 1px solid rgb(229,231,235);
+//     font-size: 0.9rem;
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-between;
+//     .patient-card-content{
+//       .patient-name{
+//         font-weight: 400;
+//       }
+//       .patient-last-consultation{
+//         font-weight: 400;
+//         color: #6F7884;
+//       }
+//     }
+//   }
+//   .patient-num{
+//     b{
+//       font-weight: 400;
+//     }
+//   }
+// }
+// .rightbar{
+//   background: #F9FAFB;
+//   .rightbar-content{
+//     text-align: center;
+//     margin: 30px 0;
+//     span{
+//       font-weight: 400;
+//     }
+//   }
+// }
 </style>
