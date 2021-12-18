@@ -88,6 +88,7 @@ export default {
         .then(response => {
           console.log(response.data);
           localStorage.setItem('user-token', response.data.token);
+          this.$router.push({name:'patients-list'});
         })
         .catch(e => {
           console.log(e);
